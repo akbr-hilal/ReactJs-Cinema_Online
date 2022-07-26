@@ -4,6 +4,7 @@ import FastFurious9 from '../assets/Film List/FF9.jpg'
 import KKN from '../assets/Film List/KKN.jpg'
 import LOR from '../assets/Film List/LOR.jpg'
 import TheMeg from '../assets/Film List/TheMeg.jpg'
+import TomJerry from '../assets/Film List/Tom&Jerry.jpg'
 
 export const dataFilms = [
     {
@@ -56,10 +57,10 @@ export const dataFilms = [
     },
     {
         id: 6,
-        title: "The Meg",
+        title: "Tom & Jerry",
         category: "ACTION",
         price: "89000",
-        img: TheMeg,
+        img: TomJerry,
         desc: "Hold onto your chimichangas, folks. From the studio that brought you all 3 Taken films comes the block-busting, fourth-wall-breaking masterpiece about Marvel Comics’ sexiest anti-hero! Starring God’s perfect idiot Ryan Reynolds and a bunch of other 'actors' DEADPOOL is a giddy slice of awesomeness packed with more twists than Deadpool’s enemies’ intestines and more action than prom night. Amazeballs!"
     },
     

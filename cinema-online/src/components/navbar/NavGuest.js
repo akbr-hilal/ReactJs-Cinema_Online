@@ -3,8 +3,11 @@ import Logo from '../../assets/Icon.png';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import Login from '../modal/auth/Login';
 import Register from '../modal/auth/Register';
+import { useNavigate } from 'react-router-dom';
 
 function NavGuest() {
+    let navigate = useNavigate()
+
     const [showLogin, setShowLogin] = useState(false)
     const [showRegister, setShowRegister] = useState(false)
     const handleShowLogin = () =>  setShowLogin(true)
@@ -20,12 +23,16 @@ function NavGuest() {
     }
     const handleCloseRegister = () => setShowRegister(false)
 
+    const handleIcon = () => {
+        navigate('/')
+    }
+
     return ( 
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand>
-                        <img src={Logo} alt="Cinema Online" height="30" className="d-inline-block align-top"/>
+                        <img src={Logo} alt="Cinema Online" height="30" className="d-inline-block align-top" onClick={handleIcon}/>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">

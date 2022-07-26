@@ -1,11 +1,12 @@
 import React from 'react'
-import NavGuest from '../components/navbar/NavGuest'
+import NavGuest from '../../components/navbar/NavGuest'
 import { Carousel } from 'react-bootstrap'
 import rupiahFormat from 'rupiah-format'
+import { Link } from 'react-router-dom'
 
 // FakeData
-import {dataCarousel} from '../dataDummy/dataCarousel'
-import {dataFilms} from '../dataDummy/dataFilms'
+import {dataCarousel} from '../../dataDummy/dataCarousel'
+import {dataFilms} from '../../dataDummy/dataFilms'
 
 function LandingPage() {
     return (
@@ -41,7 +42,9 @@ function LandingPage() {
                             <div className="card-img-overlay d-flex align-items-end">
                                 <div>
                                     <h4 className="card-title shadow-lg fw-bold">{item.title}</h4>
+                                    <Link to={`detail-film/` + item.id}>
                                     <button className='btn btn-danger'>View Film</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
