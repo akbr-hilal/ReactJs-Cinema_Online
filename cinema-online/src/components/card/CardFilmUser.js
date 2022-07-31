@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function CardFilm({ item }) {
   return (
     <div className="card text-bg-dark col-md-2 col-lg-6 me-2 mt-2">
-        <Link to={`/detail-film/` + item.id} style={{ textDecoration: "none"}}>
+        <Link to={`/film/` + item.id} style={{ textDecoration: "none"}}>
           <img src={item.img} alt={item.title} className="card-img" />
           <div className="card-img-overlay d-flex align-items-end">
               <div>

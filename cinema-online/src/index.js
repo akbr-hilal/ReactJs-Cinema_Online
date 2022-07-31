@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { UserContextProvider } from './context/userContext';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
@@ -11,13 +13,18 @@ import Favicon from './assets/Favicon.png'
 const favicon = document.getElementById("idFavicon")
 favicon.setAttribute("href", Favicon)
 
+const client = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <UserContextProvider>
+      <QueryClientProvider client={client}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );
 

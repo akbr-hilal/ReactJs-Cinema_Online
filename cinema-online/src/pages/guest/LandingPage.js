@@ -1,14 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import NavGuest from '../../components/navbar/NavGuest'
 import { Carousel } from 'react-bootstrap'
 import rupiahFormat from 'rupiah-format'
-import { Link } from 'react-router-dom'
+import { API } from '../../config/api'
+
 
 // FakeData
 import {dataCarousel} from '../../dataDummy/dataCarousel'
-import {dataFilms} from '../../dataDummy/dataFilms'
+// import {dataFilms} from '../../dataDummy/dataFilms'
+
+import CardFilm from '../../components/card/CardFilm'
 
 function LandingPage() {
+    const title = "Landing Page"
+    document.title = "Cinema Online | " + title
+    const [film, setFilm] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
+    let getFilm = async () => { 
+        setIsLoading(true)
+        const response = await API.get('/film/non')
+        console.log(response.data.data)
+        setFilm(response.data.data)
+        setIsLoading(false)
+    }
+
+    useEffect(() => {
+        getFilm()
+    }, [])
+    
     return (
         <div>
             <NavGuest />
@@ -35,20 +55,27 @@ function LandingPage() {
             </div>
             <div className="container my-5">
                 <h1>List Film</h1>
-                <div className="row d-flex justify-content-center justify-content-lg-start">
-                    {dataFilms.map((item) => (
-                        <div className="card text-bg-dark col-md-2 col-lg-6 me-2 mt-2" key={item.id}>
-                            <img src={item.img} alt={item.title} className="card-img" />
-                            <div className="card-img-overlay d-flex align-items-end">
-                                <div>
-                                    <h4 className="card-title shadow-lg fw-bold">{item.title}</h4>
-                                    <Link to={`detail-film/` + item.id}>
-                                    <button className='btn btn-danger'>View Film</button>
-                                    </Link>
-                                </div>
+                <div>
+                    {film.length !== 0 ? (
+                        <div>
+                            {isLoading ? (
+                            <div className='text-center fw-bold'>
+                                Loading, please wait...
                             </div>
+                            ) : (
+                                <div  className="row d-flex justify-content-center justify-content-lg-start">
+                                    {film.map((item, index) => (
+                                        <CardFilm item={item} key={index}/>
+                                    ))}
+                                </div>
+                            )}
                         </div>
-                    ))}
+                    ):(
+                        <div className="text-center">
+                            No data Film
+                        </div>
+                    )}
+                    
                 </div>
             </div>
             <div className="container-fluid text-bg-dark">
