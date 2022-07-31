@@ -19,6 +19,7 @@ import Profile from "./pages/user/Profile";
 import ListFilmAdmin from "./pages/admin/ListFilmAdmin";
 import AddFilm from "./pages/admin/AddFilm";
 import EditFilm from "./pages/admin/EditFilm";
+import ListTransactionAdmin from "./pages/admin/ListTransaction";
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -86,6 +87,7 @@ function App() {
       <Route path="/list-film" element={<ListFilm />}/>
 
       <Route path="/dashboard" element={<ListFilmAdmin />}/>
+      <Route path="/list-transaction" element={<ListTransactionAdmin />}/>
       <Route path="/add-film" element={<AddFilm />}/>
       <Route path="/edit-film/:id" element={<EditFilm />}/>
     </Routes>

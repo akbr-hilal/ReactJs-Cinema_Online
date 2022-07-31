@@ -10,7 +10,7 @@ const {addUser, getUsers, getUser, updateUser, deleteUser} = require('../control
 const { getFilms, getFilm, addFilm, updateFilm, deleteFilm, getFilmsNon, getFilmNon } = require('../controllers/film')
 
 // import controllers (transaction)
-const { getTransactions, addTransactions } = require('../controllers/transaction')
+const { getTransactionsByBuyer, addTransactions, getTransactionsBySeller, notification } = require('../controllers/transaction')
 
 // import controllers (auth)
 const {register, login, checkAuth} = require('../controllers/auth')
@@ -42,8 +42,10 @@ router.patch('/film/:id', auth, uploadFile('img'), updateFilm)
 router.delete('/film/:id', auth, deleteFilm)
 
     // Router Transactions
-router.get('/transaction', auth, getTransactions)
+router.get('/transaction', auth, getTransactionsByBuyer)
+router.get('/transaction/admin', auth, getTransactionsBySeller)
 router.post('/transaction', auth, addTransactions)
+router.post('/notification', notification)
 
     // Router Auth
 router.post('/register', register)

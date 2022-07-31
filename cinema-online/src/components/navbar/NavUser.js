@@ -13,7 +13,7 @@ function NavUser() {
     let navigate = useNavigate()
     const [state, dispatch] = useContext(UserContext)    
 
-    console.log(state.user)
+    // console.log(state.user)
     const logout = () => {
         console.log(state)
         dispatch({
@@ -27,7 +27,7 @@ function NavUser() {
     )
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="sticky-top">
                 <Container>
                     <Navbar.Brand>
                         <Link to='/film'>
@@ -46,6 +46,11 @@ function NavUser() {
                                 <NavDropdown.Item>
                                     <Link to='/list-film' className='text-decoration-none text-dark'>
                                         My List Film
+                                    </Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item>
+                                    <Link to='/chat' className='text-decoration-none text-dark'>
+                                        Chat
                                     </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />

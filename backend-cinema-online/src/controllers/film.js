@@ -1,4 +1,4 @@
-const { film, user } = require('../../models')
+const { film, user, transaction } = require('../../models')
 
 // Non Auth
 exports.getFilmsNon = async (req, res) => {
@@ -89,7 +89,14 @@ exports.getFilms = async (req, res) => {
                     attributes: {
                         exclude: ['createdAt', 'updatedAt', 'password'],
                     },
-                }
+                },
+                // {
+                //     model: transaction,
+                //     as: 'transactions',
+                //     attributes: {
+                //         exclude: ['createdAt', 'updatedAt'],
+                //     },
+                // },
             ],
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
@@ -101,13 +108,48 @@ exports.getFilms = async (req, res) => {
         data = data.map((item) => {
             return {
                 ...item,
-                img: process.env.PATH_FILE + item.img
+                img: process.env.PATH_FILE + item.img,
+            }
+        })
+
+        const idBuyer = req.user.id;
+        // const {id} = req.params;
+        let readyWatch = await transaction.findAll({
+            where: {
+                status: "pending" === "success", 
+                idBuyer: idBuyer
+            },
+            order: [['createdAt', 'DESC']],
+            attributes: {
+                exclude: ['createdAt', 'updatedAt', 'idSeller', 'price']
+            },
+            include: [
+                {
+                    model: film,
+                    as: 'film',
+                    attributes: {
+                        exclude: ['createdAt', 'updatedAt', 'idUser']
+                    }
+                },
+            ]
+        })
+
+        readyWatch = JSON.parse(JSON.stringify(readyWatch))
+
+        readyWatch = readyWatch.map((item) => {
+            return{
+                ...item,
+                film: {
+                    ...item.film,
+                    img: process.env.PATH_FILE + item.film.img
+                }
             }
         })
 
         res.status(200).send({
             status: 'success',
             data,
+            readyWatch
         })
     } catch (error) {
         console.log(error)
@@ -121,6 +163,7 @@ exports.getFilms = async (req, res) => {
 exports.getFilm = async (req, res) => {
     try {
         const {id} = req.params;
+
         let data = await film.findOne({
             where: {id},
             include: [
@@ -130,23 +173,45 @@ exports.getFilm = async (req, res) => {
                     attributes: {
                         exclude: ['createdAt', 'updatedAt', 'password'],
                     },
-                }
+                },
+                {
+                    model: transaction,
+                    as: 'transactions',
+                    attributes: {
+                        exclude: ['createdAt', 'updatedAt'],
+                    },
+                },
             ],
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
             },
         })
 
+        
+
         data = JSON.parse(JSON.stringify(data))
 
         data =  {
             ...data,
-            img: process.env.PATH_FILE + data.img         
+            img: process.env.PATH_FILE + data.img,
         }
+
+        const idBuyer = req.user.id;
+
+        let transactionData = await transaction.findOne({
+            where: {idBuyer, idFilm: id},
+            order: [['createdAt', 'DESC']],
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            },
+        })
+
+        transactionData = JSON.parse(JSON.stringify(transactionData))
 
         res.status(200).send({
             status: 'success',
             data,
+            statusTransaction: transactionData?.length === 0 ? false :  transactionData?.status,
         })
     } catch (error) {
         console.log(error)

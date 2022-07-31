@@ -25,12 +25,12 @@ export default function Register({show, handleClose}) {
         try {
             e.preventDefault()
 
-            
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                 },
             };
+
             const body = JSON.stringify(form)
 
             const response = await API.post("/register", body, config)
@@ -51,13 +51,12 @@ export default function Register({show, handleClose}) {
         } catch (error) {
             console.log(error)
             console.log(error.response.data.message)
-            console.log(error.response.data.error.message)
             const alert = (
-                <Alert variant="danger" className="p-2">
+                <Alert variant="danger" className="py-1">
                     {error.response.data.message || error.response.data.error.message}
                 </Alert>
-            )
-            setErrorMessage(alert)
+            );
+            setErrorMessage(alert);
         }
     })
 
@@ -67,7 +66,7 @@ export default function Register({show, handleClose}) {
                 <Modal.Title>
                     <div className="fs-2">Register</div>
                 </Modal.Title>
-             </Modal.Header>
+            </Modal.Header>
             <Modal.Body>
                 <div className="text-center">Please register to continue</div>
                 {errorMessage && errorMessage}

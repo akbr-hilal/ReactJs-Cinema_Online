@@ -23,7 +23,7 @@ function NavAdmin() {
     )
     return (
     <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="sticky-top">
             <Container>
                 <Navbar.Brand>
                     <Link to='/dashboard'>
@@ -35,8 +35,8 @@ function NavAdmin() {
                     <Nav className="bg-collapse pt-lg-0 pt-md-1">
                     <NavDropdown title={userMenu} id="basic-nav-dropdown">
                             <NavDropdown.Item>
-                                <Link to='/profile-user' className='text-decoration-none text-dark'>
-                                    Profile
+                                <Link to='/chat-admin' className='text-decoration-none text-dark'>
+                                    Chat
                                 </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>

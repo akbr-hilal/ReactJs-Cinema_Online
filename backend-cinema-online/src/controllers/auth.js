@@ -47,7 +47,7 @@ exports.register = async (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 password: hashedPassword,
-                status: "admin",
+                status: "costumer",
             });
 
             await profile.create({
@@ -132,7 +132,7 @@ exports.login = async (req, res) => {
                         name: findUser.name,
                         email: findUser.email,
                         status: findUser.status,
-                        img: findUser ? process.env.PATH_FILE + findUser.profile.img : null,
+                        img: findUser?.profile?.img ? process.env.PATH_FILE + findUser.profile.img : null,
                         token,
                     }
                 })
@@ -182,7 +182,7 @@ exports.checkAuth = async (req, res) => {
                         name: dataUser.name,
                         email: dataUser.email,
                         status: dataUser.status,
-                        img: dataUser?.profile ? process.env.PATH_FILE + dataUser.profile.img : null
+                        img: dataUser?.profile?.img ? process.env.PATH_FILE + dataUser.profile.img : null
                     },
                 }
             })

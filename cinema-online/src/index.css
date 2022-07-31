@@ -5,6 +5,25 @@ body {
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+}
+
+::-webkit-scrollbar-track{
+  background: #ced4da;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #000000;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: rgb(133, 5, 5);
 }
 
 code {
@@ -34,6 +53,129 @@ code {
 .img-detail{
   max-height: 480px !important;
   max-width: 300px !important;
+}
+
+.img{
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+
+.bg-orange{
+  background-color: orangered;
+}
+.bg-chat{
+  height: 90vh;
+}
+
+.chat{
+  height: 80%;
+}
+
+.bubblechat{
+  background-color: orangered;
+  border-radius: 8px;
+  padding: 6px 12px ;
+  color: white;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+}
+.contact img {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.contact ul li {
+  list-style-type: none;
+}
+
+.contact:hover {
+  background-color: orangered;
+  transition: 0.5s;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.contact:active {
+  background-color: rgb(177, 49, 3);
+  transition: 0.3s;
+}
+
+.contact-active {
+  background-color: orangered;
+  border-radius: 12px;
+  color: white;
+}
+
+.input-message {
+  width: 100%;
+  height: 90%;
+  background: rgba(171, 171, 171, 0.15);
+  border: none;
+  border-radius: 32px;
+  color: #000000;
+}
+
+.chat-me {
+  position: relative;
+  color: white;
+  background: orangered;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 400px;
+}
+
+.chat-me::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: -15px;
+  border-top: 15px solid transparent;
+  border-left: 20px solid orangered;
+  border-bottom: 15px solid transparent;
+}
+
+.chat-other {
+  position: relative;
+  color: white;
+  background: orangered;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 400px;
+}
+
+.chat-other::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -15px;
+  border-top: 15px solid transparent;
+  border-right: 20px solid orangered;
+  border-bottom: 15px solid transparent;
+  
+}
+
+
+
+.status-transaction-success {
+  background-color: #268d37b0;
+}
+
+.status-transaction-pending {
+  background-color: #8b8d265b;
+}
+
+.status-transaction-failed {
+  background-color: #8d26265b;
 }
 
 @media screen and (max-width: 1024px) {

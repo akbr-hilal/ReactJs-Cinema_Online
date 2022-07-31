@@ -55,7 +55,7 @@ function DetailFilmPage() {
             </div>    
             <div className='col'>
                 <h2>{film?.title}</h2>
-                <div style={{ height: 400, width: 780}}>
+                <div className="film" style={{ height: 400, width: 780}}>
                     {play ? <div className="d-flex align-items-center justify-content-center" style={{ height: 400}}>
                     <iframe width="780" height="400" src={`https://www.youtube.com/embed/${film?.embedId}`} frameBorder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title="Embedded youtube" onClick={handleLogin}></iframe></div> : <div className="d-flex align-items-center justify-content-center" style={{ height: 400}}> <button onClick={handleLogin} className="btn btn-danger">Login & buy for watching</button></div> }
                 </div>
