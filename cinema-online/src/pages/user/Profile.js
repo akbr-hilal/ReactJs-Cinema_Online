@@ -46,6 +46,10 @@ function Profile() {
     console.log(profile)
     console.log(transaction)
 
+    const handleEdit = id => {
+        navigate("/edit-profile")
+    }
+
     const logout = () => {
         dispatch({
             type: "LOGOUT"
@@ -79,8 +83,9 @@ function Profile() {
                             <h5 className="fw-bold text-orange">Address</h5>
                             <p>{profile?.address ? profile.address : '-'}</p>
                         </div>
-                        <div className='mt-3'>
-                            <button className='btn btn-danger col-12 col-lg-5' onClick={logout}>Logout</button>
+                        <div className='mt-3 text-center'>
+                            <button className='btn btn-danger col-12 col-lg-5 mb-2 mb-lg-0' onClick={logout}>Logout</button>
+                            <button className='btn btn-success col-12 col-lg-5 ms-0 ms-lg-2' onClick={() => {handleEdit(state?.user?.id)}}>Edit Profile</button>
                         </div>
                     </div>
                 </div>
@@ -108,7 +113,7 @@ function Profile() {
                         ))}
                         </>
                     ) : (
-                        <div>
+                        <div className='d-flex justify-content-center align-items-center h-100'>
                             <img
                                 src={imgEmpty}
                                 className="img-fluid"

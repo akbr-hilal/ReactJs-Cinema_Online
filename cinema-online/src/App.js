@@ -14,12 +14,15 @@ import LandingPageUser from './pages/user/LandingFilm';
 import DetailFilm from './pages/user/DetailFilm';
 import ListFilm from "./pages/user/ListFilm";
 import Profile from "./pages/user/Profile";
+import ChatUser from "./pages/user/ChatUser";
+import EditProfile from "./pages/user/EditProfile";
 
 // Pages Admin
 import ListFilmAdmin from "./pages/admin/ListFilmAdmin";
 import AddFilm from "./pages/admin/AddFilm";
 import EditFilm from "./pages/admin/EditFilm";
 import ListTransactionAdmin from "./pages/admin/ListTransaction";
+import Complain from "./pages/admin/Complain";
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -85,8 +88,11 @@ function App() {
       <Route path="/film/:id" element={<DetailFilm />}/>
       <Route path="/profile-user" element={<Profile />}/>
       <Route path="/list-film" element={<ListFilm />}/>
+      <Route path="/chat" element={<ChatUser />} />
+      <Route path="/edit-profile" element={<EditProfile />}/>
 
       <Route path="/dashboard" element={<ListFilmAdmin />}/>
+      <Route path="/complain" element={<Complain />}/>
       <Route path="/list-transaction" element={<ListTransactionAdmin />}/>
       <Route path="/add-film" element={<AddFilm />}/>
       <Route path="/edit-film/:id" element={<EditFilm />}/>

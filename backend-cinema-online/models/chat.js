@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       chat.belongsTo(models.user,{
         as: 'sender',
         foreignKey:{
-          name: 'iSender',
+          name: 'idSender',
         },
       });
 

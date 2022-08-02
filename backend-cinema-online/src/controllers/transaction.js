@@ -309,7 +309,8 @@ const sendEmail = async (status, transactionId) => {
     })
 
     data = JSON.parse(JSON.stringify(data))
-
+    console.log(data)
+    
     const mailOptions = {
         from: process.env.SYSTEM_EMAIL,
         to: data.buyer.email,

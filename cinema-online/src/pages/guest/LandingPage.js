@@ -14,6 +14,8 @@ import CardFilm from '../../components/card/CardFilm'
 function LandingPage() {
     const title = "Landing Page"
     document.title = "Cinema Online | " + title
+
+    const [searchBar, setSearchBar] = useState("")
     const [film, setFilm] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
@@ -54,8 +56,15 @@ function LandingPage() {
                 </Carousel>
             </div>
             <div className="container my-5">
-                <h1>List Film</h1>
-                <div>
+                <div className='row'>
+                    <div className='col-8'>
+                        <h1>List Film</h1>
+                    </div>
+                    <div className='col-4'>
+                        <input type="text" placeholder="Search Film ..." className="form-control rounded" onChange={(e) => {setSearchBar(e.target.value)}}/>
+                    </div>
+                </div>
+                <div className='ps-2'>
                     {film.length !== 0 ? (
                         <div>
                             {isLoading ? (
@@ -64,7 +73,13 @@ function LandingPage() {
                             </div>
                             ) : (
                                 <div  className="row d-flex justify-content-center justify-content-lg-start">
-                                    {film.map((item, index) => (
+                                    {film?.filter((item) => {
+                                        if(searchBar === ""){
+                                            return item
+                                        } else if(item.title.toLowerCase().includes(searchBar.toLowerCase())){
+                                            return item
+                                        }
+                                    }).map((item, index) => (
                                         <CardFilm item={item} key={index}/>
                                     ))}
                                 </div>

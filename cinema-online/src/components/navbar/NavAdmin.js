@@ -35,7 +35,7 @@ function NavAdmin() {
                     <Nav className="bg-collapse pt-lg-0 pt-md-1">
                     <NavDropdown title={userMenu} id="basic-nav-dropdown">
                             <NavDropdown.Item>
-                                <Link to='/chat-admin' className='text-decoration-none text-dark'>
+                                <Link to='/complain' className='text-decoration-none text-dark'>
                                     Chat
                                 </Link>
                             </NavDropdown.Item>

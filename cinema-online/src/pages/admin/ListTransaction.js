@@ -48,10 +48,11 @@ function ListTransactionAdmin() {
                     <th width='10px' className='text-center'>No</th>
                     <th width='60px' className='text-center'>Thumbnail</th>
                     <th width='200px' className='text-center'>Title</th>
-                    <th width='120px' className='text-center'>Price</th>
-                    <th width='300px' className='text-center'>Description</th>
-                    <th width='140px' className='text-center'>Buyer</th>
-                    <th width='100px' className='text-center'>Status</th>
+                    <th width='100px' className='text-center'>Price</th>
+                    <th width='200px' className='text-center'>Email Buyer</th>
+                    <th width='120px' className='text-center'>Buyer</th>
+                    <th width='80px' className='text-center'>Order Id</th>
+                    <th width='60px' className='text-center'>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -61,8 +62,9 @@ function ListTransactionAdmin() {
                       <td className="align-middle"><img src={item.film.img} alt={item.film.title} style={{width:'80px', objectFit: 'cover'}} /></td>
                       <td className="align-middle">{item.film.title}</td>
                       <td className="align-middle">{rupiahFormat.convert(item.film.price)}</td>
-                      <td>{item.film.desc}</td>
+                      <td className="align-middle">{item.buyer.email}</td>
                       <td className="align-middle">{item.buyer.name}</td>
+                      <td className="align-middle">{item.id}</td>
                       <td className={`status-transaction-${item.status} align-middle text-center`}>{item.status}</td>                  
                     </tr>
                   ))}

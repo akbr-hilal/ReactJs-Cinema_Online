@@ -11,7 +11,15 @@ const router = require('./src/routes')
 
 const app = express()
 
-const port = process.env.PORT
+const server = http.createServer(app)
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:3000"
+    }
+})
+require('./src/socket')(io)
+
+const port = process.env.PORT || 8000
 
 app.use(express.json())
 app.use(cors())
@@ -23,8 +31,9 @@ app.use('/uploads', express.static('uploads'))
 app.get("/", (req, res) => {
     res.status(200).send("Hello World")
 })
+
 app.get("/api/v1/", (req, res) => {
     res.status(200).send("API Run")
 })
 
-app.listen(port, () => console.log(`Server run on port ${port}`))
+server.listen(port, () => console.log(`Server run on port ${port}`))

@@ -36,10 +36,10 @@ function ListFilm() {
             console.log(error)
         }
     }
-    console.log(film)
-    console.log(Array.isArray(film))
+    // console.log(film)
+    // console.log(Array.isArray(film))
 
-    // let filterStatus = Array.isArray(film) ? film.filter(status => status.transactions === "success" || status.transactions === "pending") : []
+    let filterStatus = Array.isArray(film) ? film.filter(status => status.status === "success" || status.status === "pending") : []
 
     // console.log(filterStatus)
 
@@ -53,7 +53,7 @@ function ListFilm() {
             <Container>
                 <h1 className="text-center my-3 fw-bold">List Film</h1>
                 <div className="row d-flex justify-content-center justify-content-lg-start">
-                    {film?.length !== 0 ? (
+                    {filterStatus?.length !== 0 ? (
                         <div>
                             {isLoading ? (
                                 <div className='text-center fw-bold'>
@@ -61,7 +61,7 @@ function ListFilm() {
                                 </div>
                             ) : (
                                 <div className="row d-flex justify-content-center justify-content-lg-start">
-                                    {film?.map((item, index) => (
+                                    {filterStatus?.map((item, index) => (
                                         <CardFilmUser item={item.film} key={index}/>
                                     ))}
                                 </div>
